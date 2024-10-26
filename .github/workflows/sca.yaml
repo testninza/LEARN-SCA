@@ -1,0 +1,27 @@
+name: scan scan using snyk
+run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
+on: 
+  push:
+    branches:
+      - main 
+    paths:
+      - '**/package.json'
+      - '**/package-lock.json'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**/package.json'
+      - '**/package-lock.json'
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+   
+   
+ 
