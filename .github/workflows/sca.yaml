@@ -22,6 +22,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-   
+      - name: Install dependencies
+        run: npm install
+      - name:  scan dependencies
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --sarif-file-output=snyk.sarif --severity-threshold=high
+
+      - name: Upload SARIF results to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3 # Updated to v3
+        with:
+          sarif_file: snyk.sarif
    
  
