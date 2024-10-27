@@ -30,19 +30,12 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --sarif-file-output=snyk.sarif 
+          args: --sarif-file-output=snyk.sarif --severity-threshold=low --fail-on=high
 
       - name: Upload SARIF results to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3 # Updated to v3
         with:
           sarif_file: snyk.sarif
-      - name: Fail if High or Critical Vulnerabilities Detected
-        run: |
-          if grep -E '"severity": "high"|"severity": "critical"' snyk.sarif; then
-            echo "High or critical vulnerabilities detected. Failing build."
-            exit 1
-          else
-            echo "No high or critical vulnerabilities found."
-          fi
+      
    
  
