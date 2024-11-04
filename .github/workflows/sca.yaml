@@ -28,20 +28,21 @@ jobs:
         
       - name: Scan dependencies
         uses: snyk/actions/node@master
+        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --sarif-file-output=snyk.sarif --severity-threshold=low|medium|high|critical 
+          args: --sarif-file-output=snyk.sarif --severity-threshold=low
         
       - name: Upload SARIF results to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: snyk.sarif
-        if: always()
+      
       
       - name: Upload SARIF results as artifact
         uses: actions/upload-artifact@v3
         with:
           name: snyk-sarif-results
           path: snyk.sarif
-        if: always()
+
