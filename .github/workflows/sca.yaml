@@ -1,5 +1,5 @@
 name: scan scan using snyk
-run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
+run-name: SCA Scanning ${{ github.repository }} with Snyk
 on: 
   push:
     branches:
@@ -13,8 +13,6 @@ on:
     paths:
       - '**/package.json'
       - '**/package-lock.json'
-
-
 jobs:
   security:
     runs-on: ubuntu-latest
