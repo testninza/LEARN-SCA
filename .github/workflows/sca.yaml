@@ -13,6 +13,8 @@ on:
     paths:
       - '**/package.json'
       - '**/package-lock.json'
+
+
 jobs:
   security:
     runs-on: ubuntu-latest
@@ -22,21 +24,26 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        
       - name: Install dependencies
         run: npm install
-      - name:  scan dependencies
-        uses: snyk/actions/node@master
         
+      - name: Scan dependencies
+        uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --sarif-file-output=snyk.sarif  --fail-on=all
-
+          args: --sarif-file-output=snyk.sarif --fail-on=all
+        
       - name: Upload SARIF results to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v3 # Updated to v3
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: snyk.sarif
         if: always()
       
-   
- 
+      - name: Upload SARIF results as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: snyk-sarif-results
+          path: snyk.sarif
+        if: always()
