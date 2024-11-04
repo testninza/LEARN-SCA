@@ -28,7 +28,7 @@ jobs:
         
       - name: Scan dependencies
         uses: snyk/actions/node@master
-        continue-on-error: true
+        
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
@@ -39,6 +39,7 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: snyk.sarif
+        if: always()
       
       
       - name: Upload SARIF results as artifact
@@ -46,4 +47,5 @@ jobs:
         with:
           name: snyk-sarif-results
           path: snyk.sarif
+        if: always()
 
