@@ -28,11 +28,10 @@ jobs:
         
       - name: Scan dependencies
         uses: snyk/actions/node@master
-        
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --sarif-file-output=snyk.sarif --severity-threshold=high 
+          args: --sarif-file-output=snyk.sarif 
         
         
       - name: Upload SARIF results to GitHub Code Scanning
