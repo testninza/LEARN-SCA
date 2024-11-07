@@ -1,15 +1,16 @@
 {
-  "name": "defmdoefgfffgfgfdffrrgdr",
+  "name": "demoapp",
   "version": "1.0.0",
+  "description": "ci/cd pipeline integration demo project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specigfied\" && exit 1"
+    "test": "echo \"Error: no fff specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
-    "express": "^4.21.0",
-    "nodemailer": "^6.9.8"
+    "@cyclonedx/cyclonedx-npm": "^1.19.3",
+    "express": "4.21.1",
+    "hellotestninza": "file:../../package"
   }
 }
