@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@cyclonedx/cyclonedx-npm": "^1.19.3",
-    "express": "4.21.1",
+    "express": "4.21.0",
     "hellotestninza": "file:../../package"
   }
 }
