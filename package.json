@@ -1,5 +1,5 @@
 {
-  "name": "demofapp",
+  "name": "demfofapp",
   "version": "1.0.0",
   "description": "ci/cd pipeline integration demo project",
   "main": "index.js",
